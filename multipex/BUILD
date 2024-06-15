@@ -11,7 +11,7 @@ python_sources(
 pex_binary(
     name="multipex-deps",
     # dependencies=[":reqs"],
-    entry_point="main.py", # <-- If you want to let Pants infer everything
+    entry_point="main.py",  # <-- If you want to let Pants infer everything
     execution_mode="venv",
     include_requirements=True,
     include_sources=False,
@@ -22,7 +22,7 @@ pex_binary(
 pex_binary(
     name="multipex-srcs",
     # dependencies=[":lib"],
-    entry_point="main.py", # <-- If you want to let Pants infer everything
+    entry_point="main.py",  # <-- If you want to let Pants infer everything
     execution_mode="venv",
     include_requirements=False,
     include_sources=True,
@@ -36,11 +36,9 @@ docker_image(
         "FROM python:3.9-slim as deps",
         "COPY multipex/multipex-deps.pex /deps.pex",
         "RUN PEX_TOOLS=1 /usr/local/bin/python3.9 /deps.pex venv --scope=deps --bin-path prepend --compile --rm all /app",
-
         "FROM python:3.9-slim as srcs",
         "COPY multipex/multipex-srcs.pex /srcs.pex",
         "RUN PEX_TOOLS=1 /usr/local/bin/python3.9 /srcs.pex venv --scope=srcs --bin-path prepend --compile --rm all /app",
-
         "FROM python:3.9-slim",
         "COPY --from=deps /app /app",
         "COPY --from=srcs /app /app",
@@ -49,40 +47,39 @@ docker_image(
 )
 
 docker_image(
-    name = "img-deps",
+    name="img-deps",
     # registry=["companyname"],
     image_tags=["deps"],
     skip_push=True,
-    instructions = [
+    instructions=[
         "FROM python:3.9-slim as builder",
         "COPY multipex/multipex-deps.pex /deps.pex",
         "RUN PEX_TOOLS=1 /usr/local/bin/python3.9 /deps.pex venv --scope=deps --bin-path prepend --compile --rm all /app",
-
         # This removes the copy of the pex file - which can save a couple hundred megs, at the cost of a COPY
         "FROM python:3.9-slim",
         "COPY --from=builder /app /app",
-    ]
+    ],
 )
 
 docker_image(
-    name = "img-srcs",
+    name="img-srcs",
     # registry=["companyname"],
     image_tags=["srcs"],
     skip_push=True,
-    instructions = [
+    instructions=[
         "FROM python:3.9-slim",
         "COPY multipex/multipex-srcs.pex /srcs.pex",
         "RUN PEX_TOOLS=1 /usr/local/bin/python3.9 /srcs.pex venv --scope=srcs --bin-path prepend --compile --rm all /app",
-    ]
+    ],
 )
 
 docker_image(
-    name = "img1",
+    name="img1",
     dependencies=[":img-srcs", ":img-deps"],
-    instructions = [
+    instructions=[
         "FROM python:3.9-slim",
         'ENTRYPOINT ["/app/pex"]',
         "COPY --from=companyname/app:deps /app /app",
         "COPY --from=companyname/app:srcs /app /app",
-    ]
+    ],
 )
