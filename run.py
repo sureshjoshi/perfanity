@@ -113,7 +113,7 @@ def run_simple() -> pd.DataFrame:
     df = pd.DataFrame(columns=mi)
 
     for execution_mode in ["venv", "zipapp"]:
-        for layout in ["loose", "packed", "zipapp"]:
+        for layout in ["packed", "zipapp"]: # TODO: Removed `loose` as it's just painfully slow in this workflow
             target = f"simple:bin@execution_mode={execution_mode},layout={layout}"
             
             print(f"***** {target}: Starting sequence with execution_mode={execution_mode} and layout={layout} *****")
