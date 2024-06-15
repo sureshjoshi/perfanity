@@ -49,6 +49,7 @@ class RunMetrics:
 @dataclass
 class TestMetrics:
     class CacheStatus(Enum):
+        NA = "n/a"
         NONE = "none"
         CACHED = "cached"
         MEMOIZED = "memoized"
@@ -57,55 +58,64 @@ class TestMetrics:
     cache_status: CacheStatus
     
 
-# def run_goal(target: str):
-#     start = time.time()
-#     subprocess.run(["time", "pants", "run", "target"])
-#     end = time.time()
-#     print(f"  {goal.value} took {end - start} seconds")
+def run_goal(target: str):
+    start = time.time()
+    subprocess.run(["time", "pants", "run", target])
+    end = time.time()
+    duration = end - start
+    print(f"  Running took {duration} seconds")
+    return RunMetrics(duration_seconds=duration, startup_time_seconds=0)
 
 def package_target(target: str) -> PackageMetrics:
-    start2 = time.time()
+    start = time.time()
     subprocess.run(["time", "pants", "package", target])
-    end2 = time.time()
-    print(f"  Packaging {target} took {end2 - start2} seconds")
+    end = time.time()
+    duration = end - start
+    print(f"  Packaging {target} took {duration} seconds")
 
     split = target.split(":")
     target_dir = (DIST_DIR / split[0] / split[1]).with_suffix(".pex")
     file_sizes = [f.stat().st_size for f in target_dir.glob("**/*") if f.is_file()]
     return PackageMetrics(
-        duration_seconds=end2 - start2, 
+        duration_seconds=duration, 
         output_size_mb=int(sum(file_sizes) / (1024 * 1024)), 
         output_number_of_files=len(file_sizes)
     )
 
 def test_target(target: str):
-    subprocess.run(["time", "pants", "test", target])
+    """TODO: This is just structural right now, the tests need to be parametrized first"""
+    start = time.time()
+    subprocess.run(["time", "pants", "test", "simple:"])
+    end = time.time()
+    duration = end - start
+    print(f"  Testing took {duration} seconds")
+    return TestMetrics(duration_seconds=duration, cache_status=TestMetrics.CacheStatus.NA)
+
 
 def run_simple() -> pd.DataFrame:
+    def _run_sequence(frame: pd.DataFrame, step: Step):
+        p = package_target(target)
+        frame.loc[target, (step, Goal.PACKAGE)] = p.duration_seconds
+        r = run_goal(target)
+        frame.loc[target, (step, Goal.RUN)] = r.duration_seconds
+        t = test_target(target)
+        frame.loc[target, (step, Goal.TEST)] = t.duration_seconds
+
     df = pd.DataFrame(columns=mi)
 
     for layout in ["loose", "packed", "zipapp"]:
         for execution_mode in ["venv", "zipapp"]:
             print(f"  Packaging pex with execution_mode={execution_mode} and layout={layout}")
             target = f"simple:bin@execution_mode={execution_mode},layout={layout}"
-            # df.loc[target, ] = 0
-
-            p = package_target(target)
-            df.loc[target, (Step.CLEAN, Goal.PACKAGE)] = p.duration_seconds
-    #         test_target("simple:")
             
-            p = package_target(target)
-            df.loc[target, (Step.NOOP, Goal.PACKAGE)] = p.duration_seconds
-    #         test_target("simple:")
+            _run_sequence(df, Step.CLEAN)
+            _run_sequence(df, Step.NOOP)
 
             content = Path("./simple/main.py").read_text().splitlines()
             content[0] = f"# CACHE_BUSTING={time.time()}"
             Path("./simple/main.py").write_text("\n".join(content))
 
-    #         results.append((target, package_target(target, Step.INCREMENTAL)))
-            p = package_target(target)
-            df.loc[target, (Step.INCREMENTAL, Goal.PACKAGE)] = p.duration_seconds
-    #         test_target("simple:")
+            _run_sequence(df, Step.INCREMENTAL)
 
     return df
 
@@ -119,9 +129,6 @@ if __name__ == "__main__":
     df = pd.DataFrame(columns=mi)
     
     simple_results = run_simple()
-    print("*******simple_results********")
-    print(simple_results)
-    print("*******simple_results********")
-    print("")
+
     df = pd.concat([df, simple_results], axis=0)
     print(df)
