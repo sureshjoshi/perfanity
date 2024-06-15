@@ -103,8 +103,8 @@ def run_simple() -> pd.DataFrame:
 
     df = pd.DataFrame(columns=mi)
 
-    for layout in ["loose", "packed", "zipapp"]:
-        for execution_mode in ["venv", "zipapp"]:
+    for execution_mode in ["venv", "zipapp"]:
+        for layout in ["loose", "packed", "zipapp"]:
             print(f"  Packaging pex with execution_mode={execution_mode} and layout={layout}")
             target = f"simple:bin@execution_mode={execution_mode},layout={layout}"
             
