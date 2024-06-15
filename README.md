@@ -18,3 +18,16 @@ simple:bin@execution_mode=zipapp,layout=loose     4.23  9.02 0.09    0.96 8.93 0
 simple:bin@execution_mode=zipapp,layout=packed    1.15  1.36 0.08    0.08 1.20 0.09        1.15  1.26 1.08
 simple:bin@execution_mode=zipapp,layout=zipapp    6.35  1.30 0.08    0.08 1.38 0.16        6.43  1.30 1.06
 ```
+
+The importance of these tests becomes a lot more clear, when running on an older Mac Mini running Windows and WSL.
+
+```bash
+step                                             clean              noop           incremental          
+goal                                           package  run test package  run test     package  run test
+simple:bin@execution_mode=venv,layout=loose      20.15 4.68 9.22    0.50 1.42 0.17        5.29 4.45 1.49
+simple:bin@execution_mode=venv,layout=packed     21.49 1.19 0.16    0.19 1.19 0.22        2.43 5.13 1.39
+simple:bin@execution_mode=venv,layout=zipapp     23.93 1.22 0.16    0.28 1.21 0.16       24.01 2.19 1.38
+simple:bin@execution_mode=zipapp,layout=loose     5.18 3.08 0.26    0.51 3.20 0.17        5.14 3.14 1.39
+simple:bin@execution_mode=zipapp,layout=packed    2.34 1.57 0.16    0.20 1.63 0.16        2.34 1.54 1.38
+simple:bin@execution_mode=zipapp,layout=zipapp   24.05 1.89 0.16    0.21 1.93 0.17       23.85 1.95 1.54
+```

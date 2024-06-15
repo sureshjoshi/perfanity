@@ -1,0 +1,4 @@
+[GLOBAL]
+colors = true
+dynamic_ui = false
+pantsd = false
