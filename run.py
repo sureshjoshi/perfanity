@@ -93,13 +93,18 @@ def test_target(target: str):
 
 
 def run_simple() -> pd.DataFrame:
-    def _run_sequence(frame: pd.DataFrame, step: Step):
-        p = package_target(target)
-        frame.loc[target, (step, Goal.PACKAGE)] = p.duration_seconds
-        r = run_goal(target)
-        frame.loc[target, (step, Goal.RUN)] = r.duration_seconds
-        t = test_target(target)
-        frame.loc[target, (step, Goal.TEST)] = t.duration_seconds
+    def _bust_cache():
+        content = Path("./simple/main.py").read_text().splitlines()
+        content[0] = f"# CACHE_BUSTING={time.time()}"
+        Path("./simple/main.py").write_text("\n".join(content))
+
+    def _run_sequence(frame: pd.DataFrame, step: Step, tgt: str):
+        p = package_target(tgt)
+        frame.loc[tgt, (step, Goal.PACKAGE)] = p.duration_seconds
+        r = run_goal(tgt)
+        frame.loc[tgt, (step, Goal.RUN)] = r.duration_seconds
+        t = test_target(tgt)
+        frame.loc[tgt, (step, Goal.TEST)] = t.duration_seconds
 
     df = pd.DataFrame(columns=mi)
 
@@ -108,14 +113,19 @@ def run_simple() -> pd.DataFrame:
             print(f"  Packaging pex with execution_mode={execution_mode} and layout={layout}")
             target = f"simple:bin@execution_mode={execution_mode},layout={layout}"
             
-            _run_sequence(df, Step.CLEAN)
-            _run_sequence(df, Step.NOOP)
+            _run_sequence(df, Step.CLEAN, target)
+            _run_sequence(df, Step.NOOP, target)
+            _bust_cache()
+            _run_sequence(df, Step.INCREMENTAL, target)
 
-            content = Path("./simple/main.py").read_text().splitlines()
-            content[0] = f"# CACHE_BUSTING={time.time()}"
-            Path("./simple/main.py").write_text("\n".join(content))
-
-            _run_sequence(df, Step.INCREMENTAL)
+            if subprocess.run(["which", "docker"]).returncode == 0:
+                print("  Packaging pex with docker")
+                docker_target = target.replace("@", "_").replace("=", "_").replace(",", "_").replace("bin", "img")
+                # TODO: Do something to actually "Clean" this
+                _run_sequence(df, Step.CLEAN, docker_target)
+                _run_sequence(df, Step.NOOP, docker_target)
+                _bust_cache()
+                _run_sequence(df, Step.INCREMENTAL, docker_target)
 
     return df
 
