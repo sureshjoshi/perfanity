@@ -8,8 +8,16 @@ python_sources(
     name="lib",
 )
 
-# pex_binary(
-#     name="multistage-bin",
-#     dependencies=[":lib"],
-#     entry_point="main.py"
+python_tests()
+
+pex_binary(
+    name="bin",
+    dependencies=[":lib"],
+    entry_point="main.py",
+    execution_mode=parametrize("venv", "zipapp"),
+    layout=parametrize("loose", "packed", "zipapp"),
+)
+
+# docker_image(
+    
 # )

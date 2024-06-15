@@ -1,10 +1,15 @@
 [GLOBAL]
 pants_version = "2.21.0"
-pantsd = true 
+
 build_patterns = ["BUILD.pants", "BUILD"]
+pantsd = true 
+plugins = ["robotpajamas.pants.scie==0.0.3"]
 
 backend_packages = [
     "pants.backend.python",
+    "pants.backend.experimental.python.lint.ruff.check",
+    "pants.backend.experimental.python.lint.ruff.format",
+    "experimental.scie"
 ]
 
 [source]
@@ -20,6 +25,9 @@ python-default = "build-support/lockfiles/python-default.lock"
 simple = "build-support/lockfiles/simple.lock"
 multipex = "build-support/lockfiles/multipex.lock"
 multistage = "build-support/lockfiles/multistage.lock"
+
+[stats]
+log = false
 
 [anonymous-telemetry]
 enabled = false

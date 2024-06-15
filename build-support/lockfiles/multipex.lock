@@ -14,6 +14,7 @@
 //     "pandas",
 //     "pydantic",
 //     "scipy",
+//     "sqlalchemy",
 //     "uvicorn"
 //   ],
 //   "manylinux": "manylinux2014",
@@ -268,6 +269,64 @@
           ],
           "requires_python": ">=3.8",
           "version": "0.0.4"
+        },
+        {
+          "artifacts": [
+            {
+              "algorithm": "sha256",
+              "hash": "77457465d89b8263bca14759d7c1684df840b6811b2499838cc5b040a8b5b113",
+              "url": "https://files.pythonhosted.org/packages/54/4b/965a542baf157f23912e466b50fa9c49dd66132d9495d201e6c607ea16f2/greenlet-3.0.3-cp39-cp39-musllinux_1_1_x86_64.whl"
+            },
+            {
+              "algorithm": "sha256",
+              "hash": "da70d4d51c8b306bb7a031d5cff6cc25ad253affe89b70352af5f1cb68e74b53",
+              "url": "https://files.pythonhosted.org/packages/0b/8a/f5140c8713f919af0e98e6aaa40cb20edaaf3739d18c4a077581e2422ac4/greenlet-3.0.3-cp39-cp39-macosx_11_0_universal2.whl"
+            },
+            {
+              "algorithm": "sha256",
+              "hash": "43374442353259554ce33599da8b692d5aa96f8976d567d4badf263371fbe491",
+              "url": "https://files.pythonhosted.org/packages/17/14/3bddb1298b9a6786539ac609ba4b7c9c0842e12aa73aaa4d8d73ec8f8185/greenlet-3.0.3.tar.gz"
+            },
+            {
+              "algorithm": "sha256",
+              "hash": "b37eef18ea55f2ffd8f00ff8fe7c8d3818abd3e25fb73fae2ca3b672e333a7a6",
+              "url": "https://files.pythonhosted.org/packages/74/82/9737e7dee4ccb9e1be2a8f17cf760458be2c36c6ff7bbaef55cbe279e729/greenlet-3.0.3-cp39-cp39-musllinux_1_1_aarch64.whl"
+            },
+            {
+              "algorithm": "sha256",
+              "hash": "1551a8195c0d4a68fac7a4325efac0d541b48def35feb49d803674ac32582f61",
+              "url": "https://files.pythonhosted.org/packages/9d/ea/8bc7ed08ba274bdaff08f2cb546d832b8f44af267e03ca6e449840486915/greenlet-3.0.3-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+            },
+            {
+              "algorithm": "sha256",
+              "hash": "b7dcbe92cc99f08c8dd11f930de4d99ef756c3591a5377d1d9cd7dd5e896da71",
+              "url": "https://files.pythonhosted.org/packages/a2/92/f11dbbcf33809421447b24d2eefee0575c59c8569d6d03f7ca4d2b34d56f/greenlet-3.0.3-cp39-cp39-manylinux_2_17_s390x.manylinux2014_s390x.whl"
+            },
+            {
+              "algorithm": "sha256",
+              "hash": "64d7675ad83578e3fc149b617a444fab8efdafc9385471f868eb5ff83e446b8b",
+              "url": "https://files.pythonhosted.org/packages/af/05/b7e068070a6c143f34dfcd7e9144684271b8067e310f6da68269580db1d8/greenlet-3.0.3-cp39-cp39-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl"
+            },
+            {
+              "algorithm": "sha256",
+              "hash": "086152f8fbc5955df88382e8a75984e2bb1c892ad2e3c80a2508954e52295257",
+              "url": "https://files.pythonhosted.org/packages/cf/5b/2de4a398840d3b4d99c4a3476cda0d82badfa349f3f89846ada2e32e9500/greenlet-3.0.3-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+            },
+            {
+              "algorithm": "sha256",
+              "hash": "d73a9fe764d77f87f8ec26a0c85144d6a951a6c438dfe50487df5595c6373eac",
+              "url": "https://files.pythonhosted.org/packages/dc/c3/06ca5f34b01af6d6e2fd2f97c0ad3673123a442bf4a3add548d374b1cc7c/greenlet-3.0.3-cp39-cp39-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl"
+            }
+          ],
+          "project_name": "greenlet",
+          "requires_dists": [
+            "Sphinx; extra == \"docs\"",
+            "furo; extra == \"docs\"",
+            "objgraph; extra == \"test\"",
+            "psutil; extra == \"test\""
+          ],
+          "requires_python": ">=3.7",
+          "version": "3.0.3"
         },
         {
           "artifacts": [
@@ -1203,6 +1262,87 @@
           "artifacts": [
             {
               "algorithm": "sha256",
+              "hash": "7108d569d3990c71e26a42f60474b4c02c8586c4681af5fd67e51a044fdea86a",
+              "url": "https://files.pythonhosted.org/packages/de/80/13fc9c003dffc169e03244e0ce23495ff54bbd77ba1245ef01c9a5c04a4c/SQLAlchemy-2.0.30-py3-none-any.whl"
+            },
+            {
+              "algorithm": "sha256",
+              "hash": "edc16a50f5e1b7a06a2dcc1f2205b0b961074c123ed17ebda726f376a5ab0953",
+              "url": "https://files.pythonhosted.org/packages/11/29/5279be56ce7e0689ddbfd98602c26780b2a6d0f16b9d9a4aedabfbc6190c/SQLAlchemy-2.0.30-cp39-cp39-musllinux_1_1_aarch64.whl"
+            },
+            {
+              "algorithm": "sha256",
+              "hash": "2b1708916730f4830bc69d6f49d37f7698b5bd7530aca7f04f785f8849e95255",
+              "url": "https://files.pythonhosted.org/packages/36/d0/0137ebcf0dc230c2e82a621b3af755b8788a2a9dd6fd1b8cd6d5e7f6b00d/SQLAlchemy-2.0.30.tar.gz"
+            },
+            {
+              "algorithm": "sha256",
+              "hash": "0094c5dc698a5f78d3d1539853e8ecec02516b62b8223c970c86d44e7a80f6c7",
+              "url": "https://files.pythonhosted.org/packages/39/5a/19915843467bf68ca0fffbf76e4f62a95dde3d1759b036bcbbc57075545c/SQLAlchemy-2.0.30-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+            },
+            {
+              "algorithm": "sha256",
+              "hash": "f7703c2010355dd28f53deb644a05fc30f796bd8598b43f0ba678878780b6e4c",
+              "url": "https://files.pythonhosted.org/packages/59/5c/71ad487b07aa8e2622629cda39fb68311938a6aa0c4d1c0f2901aabf883e/SQLAlchemy-2.0.30-cp39-cp39-musllinux_1_1_x86_64.whl"
+            },
+            {
+              "algorithm": "sha256",
+              "hash": "2383146973a15435e4717f94c7509982770e3e54974c71f76500a0136f22810b",
+              "url": "https://files.pythonhosted.org/packages/5e/96/c7be069ecbc2727868217ee59874b85b2b8aeb9dc067ddc4b2a16e8e10a8/SQLAlchemy-2.0.30-cp39-cp39-macosx_11_0_arm64.whl"
+            },
+            {
+              "algorithm": "sha256",
+              "hash": "8409de825f2c3b62ab15788635ccaec0c881c3f12a8af2b12ae4910a0a9aeef6",
+              "url": "https://files.pythonhosted.org/packages/a0/fc/f34dd7e83fee8e94c06762891d0b442cc3dbde617c31a46072a93a17ee67/SQLAlchemy-2.0.30-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+            },
+            {
+              "algorithm": "sha256",
+              "hash": "ae8c62fe2480dd61c532ccafdbce9b29dacc126fe8be0d9a927ca3e699b9491a",
+              "url": "https://files.pythonhosted.org/packages/b5/a3/503563b3b6fe3707149a2be28809eb3c920d630097787facfa010b1fd2e7/SQLAlchemy-2.0.30-cp39-cp39-macosx_10_9_x86_64.whl"
+            }
+          ],
+          "project_name": "sqlalchemy",
+          "requires_dists": [
+            "aiomysql>=0.2.0; extra == \"aiomysql\"",
+            "aioodbc; extra == \"aioodbc\"",
+            "aiosqlite; extra == \"aiosqlite\"",
+            "asyncmy!=0.2.4,!=0.2.6,>=0.2.3; extra == \"asyncmy\"",
+            "asyncpg; extra == \"postgresql-asyncpg\"",
+            "cx-oracle>=8; extra == \"oracle\"",
+            "greenlet!=0.4.17; extra == \"aiomysql\"",
+            "greenlet!=0.4.17; extra == \"aioodbc\"",
+            "greenlet!=0.4.17; extra == \"aiosqlite\"",
+            "greenlet!=0.4.17; extra == \"asyncio\"",
+            "greenlet!=0.4.17; extra == \"asyncmy\"",
+            "greenlet!=0.4.17; extra == \"postgresql-asyncpg\"",
+            "greenlet!=0.4.17; platform_machine == \"aarch64\" or (platform_machine == \"ppc64le\" or (platform_machine == \"x86_64\" or (platform_machine == \"amd64\" or (platform_machine == \"AMD64\" or (platform_machine == \"win32\" or platform_machine == \"WIN32\")))))",
+            "importlib-metadata; python_version < \"3.8\"",
+            "mariadb!=1.1.2,!=1.1.5,>=1.0.1; extra == \"mariadb-connector\"",
+            "mypy>=0.910; extra == \"mypy\"",
+            "mysql-connector-python; extra == \"mysql-connector\"",
+            "mysqlclient>=1.4.0; extra == \"mysql\"",
+            "oracledb>=1.0.1; extra == \"oracle-oracledb\"",
+            "pg8000>=1.29.1; extra == \"postgresql-pg8000\"",
+            "psycopg2-binary; extra == \"postgresql-psycopg2binary\"",
+            "psycopg2>=2.7; extra == \"postgresql\"",
+            "psycopg2cffi; extra == \"postgresql-psycopg2cffi\"",
+            "psycopg>=3.0.7; extra == \"postgresql-psycopg\"",
+            "psycopg[binary]>=3.0.7; extra == \"postgresql-psycopgbinary\"",
+            "pymssql; extra == \"mssql-pymssql\"",
+            "pymysql; extra == \"pymysql\"",
+            "pyodbc; extra == \"mssql\"",
+            "pyodbc; extra == \"mssql-pyodbc\"",
+            "sqlcipher3-binary; extra == \"sqlcipher\"",
+            "typing-extensions!=3.10.0.1; extra == \"aiosqlite\"",
+            "typing-extensions>=4.6.0"
+          ],
+          "requires_python": ">=3.7",
+          "version": "2.0.30"
+        },
+        {
+          "artifacts": [
+            {
+              "algorithm": "sha256",
               "hash": "6fe59f29268538e5d0d182f2791a479a0c64638e6935d1c6989e63fb2699c6ee",
               "url": "https://files.pythonhosted.org/packages/fd/18/31fa32ed6c68ba66220204ef0be798c349d0a20c1901f9d4a794e08c76d8/starlette-0.37.2-py3-none-any.whl"
             },
@@ -1630,6 +1770,7 @@
     "pandas",
     "pydantic",
     "scipy",
+    "sqlalchemy",
     "uvicorn"
   ],
   "requires_python": [
