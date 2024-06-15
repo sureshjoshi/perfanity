@@ -1,0 +1,25 @@
+[GLOBAL]
+pants_version = "2.21.0"
+pantsd = true 
+build_patterns = ["BUILD.pants", "BUILD"]
+
+backend_packages = [
+    "pants.backend.python",
+]
+
+[source]
+marker_filenames = ["BUILD.pants"]
+
+[python]
+enable_resolves = true
+interpreter_constraints = ["==3.9.*"]
+tailor_pex_binary_targets = false
+
+[python.resolves]
+python-default = "build-support/lockfiles/python-default.lock"
+simple = "build-support/lockfiles/simple.lock"
+multipex = "build-support/lockfiles/multipex.lock"
+multistage = "build-support/lockfiles/multistage.lock"
+
+[anonymous-telemetry]
+enabled = false
