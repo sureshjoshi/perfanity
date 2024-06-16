@@ -30,6 +30,14 @@ pex_binary(
     layout="packed",
 )
 
+pex_binary(
+    name="multipex",
+    dependencies=[":multipex-deps", ":multipex-srcs"],
+    entry_point="main.py",
+    execution_mode="venv",
+    layout="packed",
+)
+
 docker_image(
     name="img",
     instructions=[
