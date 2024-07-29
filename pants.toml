@@ -20,9 +20,9 @@ marker_filenames = ["BUILD.pants"]
 enable_resolves = true
 interpreter_constraints = ["==3.9.*"]
 tailor_pex_binary_targets = false
+pip_version = "24.1.2"
 
 [python.resolves]
-python-default = "build-support/lockfiles/python-default.lock"
 simple = "build-support/lockfiles/simple.lock"
 multipex = "build-support/lockfiles/multipex.lock"
 multistage = "build-support/lockfiles/multistage.lock"
